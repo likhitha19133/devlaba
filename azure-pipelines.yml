@@ -4,16 +4,17 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+  - main
 
 pool:
-  vmImage: ubuntu-latest
+  name: Default
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+  - script: echo Hello, it's my Azure Devops App
+    displayName: 'Run an echo command'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+  - script: mvn clean install
+    displayName: 'Build with maven'
+
+  - script: java -jar target/devlaba-0.0.1-SNAPSHOT.jar
+    displayName: 'Run a jar file of My deva App'
